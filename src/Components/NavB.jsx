@@ -8,7 +8,7 @@ export const NavB = () => {
         <h1 className="md:col-span-2 flex justify-center md:justify-start font-bold cursor-pointer text-3xl">
           Logo
         </h1>
-        <nav className="md:col-span-6 flex items-center gap-4 justify-end">
+        <nav className="md:col-span-6 flex items-center gap-4 justify-end font-bold">
         <Link to='/'>
           <a
             href="#"
@@ -24,25 +24,7 @@ export const NavB = () => {
           >
             Create_Task
           </a></Link>
-          
-          <a
-            href="#"
-            className="xl:py-1 xl:px-2 rounded-lg hover:bg-gray-100 transition-colors"
-          >
-            Servicios
-          </a>
-          <a
-            href="#"
-            className="xl:py-1 xl:px-2 rounded-lg hover:bg-gray-100 transition-colors"
-          >
-            Blog
-          </a>
-          <a
-            href="#"
-            className="xl:py-1 xl:px-2 rounded-lg hover:bg-gray-100 transition-colors"
-          >
-            Contacto
-          </a>
+
         </nav>
       </div>
     </div>

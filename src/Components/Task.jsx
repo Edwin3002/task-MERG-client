@@ -4,11 +4,19 @@ import { useNavigate} from 'react-router-dom'
 
 export const Task = ({ data }) => {
 
-    const {deleteOneTask} = useTasks();
+    const {deleteOneTask, updateOneDone} = useTasks();
     const navigate = useNavigate();
 
     const handleUpdate = (id) => {
         navigate(`/update/${id}`)
+    }
+
+    const handleUpdateDone = async (id) => {
+        if(data.done === 0){
+            await updateOneDone(id, 1)
+        }else{
+            await updateOneDone(id, 0)
+        }
     }
 
     return (
@@ -23,7 +31,9 @@ export const Task = ({ data }) => {
                 {data.createAt}
             </td>
             <td className="py-4 px-6 text-center">
+                <span onClick={()=>{handleUpdateDone(data.id)}}>
                 {data.done == 0 ? '💔' : '💚'}
+                </span>
             </td>
             <td className="py-4 px-6">
                 <a href="#" className="font-medium text-red-600 dark:text-red-500 hover:underline hover:text-red-700 " onClick={() => {

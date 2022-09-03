@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { createTask, deleteTask, getTask, getTasks, updateTask } from '../Api/tasks.api'
+import { createTask, deleteTask, getTask, getTasks, updateDone, updateTask } from '../Api/tasks.api'
 import { TaskContext } from "./TaskContext";
 
 export const useTasks = () => {
@@ -53,6 +53,17 @@ export const TaskContextProvider = ({ children }) => {
                 console.error('salio mal actualizar');
             }
         }
+        //update done
+        const updateOneDone= async (id, done) => {
+            try {
+                const res = await updateDone(id, done);
+                setTasks(
+                    tasks.map(t => (t.id === id ? {...t, done: !t.done} : t))
+                    )
+            } catch (error) {
+                console.error('salio mal actualizar el done');
+            }
+        }
 
     //delete task
     const deleteOneTask = async (id) => {
@@ -67,7 +78,7 @@ export const TaskContextProvider = ({ children }) => {
     }
 
 
-    return <TaskContext.Provider value={{ tasks, getListTasks, deleteOneTask, createOneTask, getOneTask, updateOneTask }}>
+    return <TaskContext.Provider value={{ tasks, getListTasks, deleteOneTask, createOneTask, getOneTask, updateOneTask, updateOneDone }}>
         {children}
     </TaskContext.Provider>
 }
