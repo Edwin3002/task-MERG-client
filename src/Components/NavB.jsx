@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export const NavB = () => {
   return (
     <div>
-      <div className="w-full bg-white p-4 grid md:grid-cols-12 gap-4 items-end justify-center">
+      <div className="w-full bg-gray-600 p-4 grid md:grid-cols-12 gap-4 items-end justify-center text-white">
         <h1 className="md:col-span-2 flex justify-center md:justify-start font-bold cursor-pointer text-3xl">
           Logo
         </h1>
