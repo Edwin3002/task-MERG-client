@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Form, Formik } from 'formik';
 import { useTasks } from "../Context/TaskProvider";
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 export const TaskForm = () => {
 
-  const { createOneTask, getOneTask } = useTasks();
+  const { createOneTask, getOneTask, updateOneTask } = useTasks();
   const params = useParams();
+  const navigate = useNavigate();
   const [task, setTask] = useState({
     title: '',
     task: ''
@@ -15,8 +16,10 @@ export const TaskForm = () => {
   const oneTask = async () =>{
     if (params.id) {
       const ta = await getOneTask(params.id);
-      setTask(ta)
-      console.log(task);
+      setTask({
+        title: ta.title,
+    task: ta.task
+      })
   }
   }
 
@@ -26,13 +29,23 @@ export const TaskForm = () => {
 
   return (
     <div className='w-3/4 mx-auto'>
-      <Formik initialValues={{
+      <Formik initialValues={
         task
-      }}
+      }
       enableReinitialize={true}
         onSubmit={async (values, actions) => {
-          createOneTask(values)
-          actions.resetForm();
+          
+          if(params.id){
+            await updateOneTask(params.id, values);
+          }else{
+            await createOneTask(values);
+          }
+
+          setTask({
+            title: '',
+            task: ''
+          });
+          navigate('/')
         }}
       >
         {({ handleChange, handleSubmit, values, isSubmitting }) => (

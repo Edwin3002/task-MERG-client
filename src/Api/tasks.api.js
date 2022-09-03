@@ -12,6 +12,10 @@ export const getTask = async (id) => {
 export const createTask = async (task) => {
    await axios.post('http://localhost:4000/tasks', task);
 };
+export const updateTask = async (id, newTask) => {
+   console.log(id , newTask);
+   await axios.put(`http://localhost:4000/tasks/${id}`, newTask);
+};
 export const deleteTask = async (id) => {
    await axios.delete(`http://localhost:4000/tasks/${id}`);
 };

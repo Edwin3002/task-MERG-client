@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { createTask, deleteTask, getTask, getTasks } from '../Api/tasks.api'
+import { createTask, deleteTask, getTask, getTasks, updateTask } from '../Api/tasks.api'
 import { TaskContext } from "./TaskContext";
 
 export const useTasks = () => {
@@ -22,7 +22,7 @@ export const TaskContextProvider = ({ children }) => {
             const data = await getTasks();
             setTasks(data);
         } catch (error) {
-            console.error('salio mal');
+            console.error('salio mal obtener tareas');
         }
     }
 
@@ -32,7 +32,7 @@ export const TaskContextProvider = ({ children }) => {
             const data = await getTask(id);
             return data
         } catch (error) {
-            console.error('salio mal');
+            console.error('salio mal obtener una tarea');
         }
     }
 
@@ -41,9 +41,18 @@ export const TaskContextProvider = ({ children }) => {
         try {
             const res = await createTask(task);
         } catch (error) {
-            console.error('salio mal');
+            console.error('salio mal crear tarea');
         }
     }
+
+        //update task
+        const updateOneTask = async (id, task) => {
+            try {
+                const res = await updateTask(id, task);
+            } catch (error) {
+                console.error('salio mal actualizar');
+            }
+        }
 
     //delete task
     const deleteOneTask = async (id) => {
@@ -58,7 +67,7 @@ export const TaskContextProvider = ({ children }) => {
     }
 
 
-    return <TaskContext.Provider value={{ tasks, getListTasks, deleteOneTask, createOneTask, getOneTask }}>
+    return <TaskContext.Provider value={{ tasks, getListTasks, deleteOneTask, createOneTask, getOneTask, updateOneTask }}>
         {children}
     </TaskContext.Provider>
 }
