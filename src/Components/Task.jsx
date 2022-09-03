@@ -1,19 +1,14 @@
 import React from 'react'
-import { deleteTask } from '../Api/tasks.api'
+import { useTasks } from '../Context/TaskProvider'
+import { useNavigate} from 'react-router-dom'
 
 export const Task = ({ data }) => {
 
-    const handleDelete = async (id) => {
-        try {
-            await deleteTask(id);
-            alert('task delete');
-        } catch (error) {
-            alert('task no fue eliminada');
-            console.error(error);
-        }
-    }
+    const {deleteOneTask} = useTasks();
+    const navigate = useNavigate();
+
     const handleUpdate = (id) => {
-        console.log(id + 'up');
+        navigate(`/update/${id}`)
     }
 
     return (
@@ -32,7 +27,7 @@ export const Task = ({ data }) => {
             </td>
             <td className="py-4 px-6">
                 <a href="#" className="font-medium text-red-600 dark:text-red-500 hover:underline hover:text-red-700 " onClick={() => {
-                    handleDelete(data.id)
+                    deleteOneTask(data.id)
                 }}>Delete</a>
             </td>
             <td className="py-4 px-6">

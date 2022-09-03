@@ -4,6 +4,11 @@ export const getTasks = async () => {
    const data = await axios.get('http://localhost:4000/tasks');
    return data.data
 };
+
+export const getTask = async (id) => {
+   const data = await axios.get(`http://localhost:4000/tasks/${id}`);
+   return data.data
+};
 export const createTask = async (task) => {
    await axios.post('http://localhost:4000/tasks', task);
 };

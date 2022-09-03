@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { getTasks } from '../Api/tasks.api'
+import React, { useEffect } from 'react'
 import { Task } from './Task'
+import { useTasks } from '../Context/TaskProvider'
 
 export const TasksList = () => {
-
-    const [tasks, setTasks] = useState([])
-
-    const getListTasks = async () => {
-        const data = await getTasks();
-        setTasks(data)
-    }
+    const { tasks, getListTasks } = useTasks();
 
     const renderMain = () => {
         if (tasks.length == 0) {
             return <tr><td rowSpan={6} className='mt-6'>Empty</td></tr>
-        }else{
+        } else {
             return tasks.map(t => (
-                <Task data={t} key={t.id}/>
+                <Task data={t} key={t.id} />
             ))
         }
     }
@@ -46,10 +40,10 @@ export const TasksList = () => {
                                 DONE
                             </th>
                             <th scope="col" className="py-3 px-6">
-                                EDIT
+                                DELETE
                             </th>
                             <th scope="col" className="py-3 px-6">
-                                Delete
+                                EDIT
                             </th>
                         </tr>
                     </thead>
