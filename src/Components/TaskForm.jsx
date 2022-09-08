@@ -13,14 +13,14 @@ export const TaskForm = () => {
     task: ''
   })
 
-  const oneTask = async () =>{
+  const oneTask = async () => {
     if (params.id) {
       const ta = await getOneTask(params.id);
       setTask({
-        title: ta.title,
-    task: ta.task
+        title: ta[0].title,
+        task: ta[0].task
       })
-  }
+    }
   }
 
   useEffect(() => {
@@ -32,12 +32,12 @@ export const TaskForm = () => {
       <Formik initialValues={
         task
       }
-      enableReinitialize={true}
+        enableReinitialize={true}
         onSubmit={async (values, actions) => {
-          
-          if(params.id){
+          if (params.id) {
             await updateOneTask(params.id, values);
-          }else{
+            console.log(values);
+          } else {
             await createOneTask(values);
           }
 

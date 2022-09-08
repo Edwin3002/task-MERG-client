@@ -18,6 +18,7 @@ export const TaskContextProvider = ({ children }) => {
 
     //get tasks
     const getListTasks = async () => {
+        
         try {
             const data = await getTasks();
             setTasks(data);
@@ -60,6 +61,7 @@ export const TaskContextProvider = ({ children }) => {
                 setTasks(
                     tasks.map(t => (t.id === id ? {...t, done: !t.done} : t))
                     )
+                    console.error('actualizar el done');
             } catch (error) {
                 console.error('salio mal actualizar el done');
             }

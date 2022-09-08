@@ -24,7 +24,6 @@ export const NavB = () => {
           >
             Create_Task
           </a></Link>
-
         </nav>
       </div>
     </div>
