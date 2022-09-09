@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { createTask, deleteTask, getTask, getTasks, updateDone, updateTask } from '../Api/tasks.api'
 import { TaskContext } from "./TaskContext";
+import Swal from 'sweetalert2';
 
 export const useTasks = () => {
     const context = useContext(TaskContext);
@@ -40,23 +41,54 @@ export const TaskContextProvider = ({ children }) => {
     //create task
     const createOneTask = async (task) => {
         try {
+
             const res = await createTask(task);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Task creada correctamente',
+                showConfirmButton: false,
+                timer: 1500
+              })
         } catch (error) {
             console.error('salio mal crear tarea');
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Task no fue creada rechazada',
+                showConfirmButton: false,
+                timer: 1500
+              })
         }
     }
 
         //update task
         const updateOneTask = async (id, task) => {
             try {
+
                 const res = await updateTask(id, task);
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Task Editada correctamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
             } catch (error) {
                 console.error('salio mal actualizar');
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Task no fue editada',
+                    showConfirmButton: false,
+                    timer: 1000
+                  })
             }
         }
         //update done
         const updateOneDone= async (id, done) => {
             try {
+
                 const res = await updateDone(id, done);
                 setTasks(
                     tasks.map(t => (t.id === id ? {...t, done: !t.done} : t))
@@ -64,6 +96,13 @@ export const TaskContextProvider = ({ children }) => {
                     console.error('actualizar el done');
             } catch (error) {
                 console.error('salio mal actualizar el done');
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Check task rechazada',
+                    showConfirmButton: false,
+                    timer: 1000
+                  })
             }
         }
 
@@ -71,10 +110,22 @@ export const TaskContextProvider = ({ children }) => {
     const deleteOneTask = async (id) => {
         try {
             await deleteTask(id);
-            alert('task delete');
             setTasks(tasks.filter(t => t.id !== id));
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Task eliminada',
+                showConfirmButton: false,
+                timer: 1000
+              })
         } catch (error) {
-            alert('task no fue eliminada');
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Task no fue eliminada',
+                showConfirmButton: false,
+                timer: 1000
+              })
             console.error(error);
         }
     }
