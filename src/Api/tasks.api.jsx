@@ -1,6 +1,6 @@
 import axios  from 'axios';
 import { apiHeroku } from './urlApi';
-import dbJson from '../data/dataBase.json'
+import dbJson from '../data/dataBase.json';
 
 export const getTasks = async () => {
    // const data = await axios.get(apiHeroku);

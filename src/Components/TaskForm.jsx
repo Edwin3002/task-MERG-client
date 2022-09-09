@@ -28,7 +28,7 @@ export const TaskForm = () => {
   }, [])
 
   return (
-    <div className='w-3/4 mx-auto'>
+    <div className='w-11/12 lg:w-3/4 mx-auto'>
       <Formik initialValues={
         task
       }
@@ -52,14 +52,14 @@ export const TaskForm = () => {
           <Form onSubmit={handleSubmit}>
             <h1 className='text-center text-white text-4xl font-bold my-4'>{!params.id ? 'CREATE TASK' : 'UPDATE TASK'}</h1>
             <div className="col-span-3 sm:col-span-2 mt-2">
-              <label for="company-website" className="block text-sm font-medium text-white">TITLE</label>
+              <label  className="block text-sm font-medium text-white">TITLE</label>
               <div className="mt-1 mb-6 flex rounded-md shadow-sm">
 
                 <input type='text' name='title' id="company-website" className="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2" placeholder='Title' onChange={handleChange} value={values.title} />
               </div>
             </div>
             <div>
-              <label for="about" className="block text-sm font-medium text-white">DESCRIPTION</label>
+              <label className="block text-sm font-medium text-white">DESCRIPTION</label>
               <div className="mt-1 mb-6">
                 <textarea id="about" name="task" rows="3" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2" placeholder='Write a description' onChange={handleChange}
                   value={values.task}></textarea>

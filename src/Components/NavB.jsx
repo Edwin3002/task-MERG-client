@@ -3,29 +3,26 @@ import { Link } from 'react-router-dom'
 
 export const NavB = () => {
   return (
-    <div>
-      <div className="w-full bg-gray-600 p-4 grid md:grid-cols-12 gap-4 items-end justify-center text-white">
-        <h1 className="md:col-span-2 flex justify-center md:justify-start font-bold cursor-pointer text-3xl">
-          Logo
-        </h1>
-        <nav className="md:col-span-6 flex items-center gap-4 justify-end font-bold">
-        <Link to='/'>
+      <div className="w-full bg-gray-600 flex justify-around text-white py-2">
+        <span className='w-1/2'>
+          <img src='https://res.cloudinary.com/edwin3002/image/upload/v1656561378/portafolio/logo-circle_rqq2e4.png' width='40px' className='ml-10'/>
+        </span>
+
+        <nav className="w-1/2 flex justify-around font-bold">
+        <Link to='/' className='flex items-center'>
           <a
-            href="#"
-            className="xl:py-1 xl:px-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="p-1 rounded-lg hover:bg-gray-700 transition-colors"
             >
             Inicio
           </a>
             </Link>
-          <Link to='/create'>
+          <Link to='/create' className='flex items-center'>
             <a
-            href="#"
-            className="xl:py-1 xl:px-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="p-1 rounded-lg hover:bg-gray-700 transition-colors"
           >
             Create_Task
           </a></Link>
         </nav>
       </div>
-    </div>
   )
 }
