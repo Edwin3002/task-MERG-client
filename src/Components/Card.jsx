@@ -27,14 +27,14 @@ export const Card = ({ data }) => {
                     {data.done == 0 ? '💔' : '💚'}</span>
             </div>
             <div className='h-3/5 grid content-between pt-2 px-2 bg-gray-200'>
-                <p className='text-center'>{data.task} </p>
+                <p className={!data.done ? 'text-center' : 'line-through text-center'}>{data.task} </p>
                 <p className='font-bold'>{data.createAt.slice(0, 10)}</p>
             </div>
             <div className='h-1/5 flex justify-evenly font-bold text-white  '>
-                <span className='flex justify-center items-center w-1/2 bg-[#FFD93D] rounded-bl' onClick={() => {
+                <span className='flex justify-center items-center w-1/2 bg-[#ffd21c] hover:bg-[#eebe00] rounded-bl' onClick={() => {
                     handleUpdate(data.id)
                 }}>Edit</span>
-                <span className='flex justify-center items-center w-1/2 bg-[#FF6B6B] rounded-br' onClick={() => {
+                <span className='flex justify-center items-center w-1/2 bg-[#FF6B6B] hover:bg-[#ff5151]  rounded-br' onClick={() => {
                     deleteOneTask(data.id)
                 }}>Delete</span>
             </div>

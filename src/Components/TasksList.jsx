@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { Task } from './Task'
 import { useTasks } from '../Context/TaskProvider'
 import { Card } from './Card';
 
