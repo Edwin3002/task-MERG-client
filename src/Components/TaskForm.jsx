@@ -36,7 +36,6 @@ export const TaskForm = () => {
         onSubmit={async (values, actions) => {
           if (params.id) {
             await updateOneTask(params.id, values);
-            console.log(values);
           } else {
             await createOneTask(values);
           }
